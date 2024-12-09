@@ -1,11 +1,15 @@
 from config.values import BOT_TOKEN, DB_URI
 from repository.db import Database
+import asyncio
 
-def test_db():
+async def test_db():
     db = Database(DB_URI)
-    print(db.db.list_collection_names())
-    print(db.db[db.prompt_collection].count_documents({}))
-    print(db.db[db.prompt_collection].find_one())
+    await db.init_db()
+    print(await db.db.list_collection_names())
+    print(await db.db[db.prompt_collection].count_documents({}))
+    print(await db.db[db.prompt_collection].find_one())
 
 print(BOT_TOKEN)
-test_db()
+
+loop = asyncio.get_event_loop()
+loop.run_until_complete(test_db())
