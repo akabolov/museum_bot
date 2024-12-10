@@ -12,3 +12,5 @@ bot = Bot(
     token=BOT_TOKEN, default=DefaultBotProperties(
         parse_mode=ParseMode.HTML))
 dp = Dispatcher(storage=MemoryStorage())
+
+print()
