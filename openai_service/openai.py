@@ -32,3 +32,16 @@ def get_location_chat(latitude:float, longitude: float):
         model='gpt-4o'
     )
     return response
+
+
+def response_validation(prompt):
+    response = client.chat.completions.create(
+        messages=[
+            {
+                'role': 'user',
+                'content': f'{prompt} /n В тексте оставь инофрмацию только о достопримечательности, истории или архитектуре'
+            }
+        ],
+        model='gpt-4o'
+    )
+    return response
